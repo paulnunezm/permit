@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :permissions
+  resources :sites
+  resources :roles
   resource :session
   resources :passwords, param: :token
   get 'inertia-example', to: 'inertia_example#index'
