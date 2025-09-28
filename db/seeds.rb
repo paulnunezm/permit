@@ -7,3 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+#
+%w[ admin owner supervisor member].each_with_index do |role, index|
+  Role.find_or_create_by!(id: index+1, name: role)
+end

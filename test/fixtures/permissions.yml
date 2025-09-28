@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+permission_one:
+  site: site_one
+  user: one 
+  name: Homero Simpson
+
+permission_two:
+  site: site_one
+  user: one 
+  name: Marge Simpson

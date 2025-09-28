@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_28_180747) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_28_190650) do
+  create_table "permissions", force: :cascade do |t|
+    t.integer "site_id", null: false
+    t.integer "user_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["site_id"], name: "index_permissions_on_site_id"
+    t.index ["user_id"], name: "index_permissions_on_user_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
@@ -18,6 +34,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_28_180747) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
+  create_table "sites", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sites_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,7 +57,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_28_180747) do
     t.index ["site_id"], name: "index_users_on_site_id"
   end
 
+  add_foreign_key "permissions", "sites"
+  add_foreign_key "permissions", "users"
   add_foreign_key "sessions", "users"
+  add_foreign_key "sites", "users"
   add_foreign_key "users", "roles"
   add_foreign_key "users", "sites"
 end
