@@ -13,7 +13,8 @@ export default function New() {
                         <div className='my-8 flex:row'>
                             < Input name="email_address" type="email" className="block shadow rounded-md border border-gray-400 outline-none px-3 py-2  w-full" placeholder="Email" />
                             <Input name="password" type="password" className="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-4 w-full" placeholder="Password" />
-                            {errors.login && <div>{errors.login}</div>}
+                            {errors.login &&
+                                <div className='mt-2 py-2 px-4 bg-red-50 text-red-600 rounded-lg '>{errors.login}</div>}
                             <button
                                 className="mt-4 rounded-lg py-3 px-5 bg-teal-700 text-teal-50 font-medium cursor-pointer" type="submit">
                                 LogIn
