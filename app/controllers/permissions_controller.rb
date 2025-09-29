@@ -6,7 +6,7 @@ class PermissionsController < ApplicationController
   # GET /permissions
   def index
     @permissions = Permission.all
-    render inertia: 'Permission/Index', props: {
+    render inertia: "Permission/Index", props: {
       permissions: @permissions.map do |permission|
         serialize_permission(permission)
       end
@@ -15,7 +15,7 @@ class PermissionsController < ApplicationController
 
   # GET /permissions/1
   def show
-    render inertia: 'Permission/Show', props: {
+    render inertia: "Permission/Show", props: {
       permission: serialize_permission(@permission)
     }
   end
@@ -23,14 +23,14 @@ class PermissionsController < ApplicationController
   # GET /permissions/new
   def new
     @permission = Permission.new
-    render inertia: 'Permission/New', props: {
+    render inertia: "Permission/New", props: {
       permission: serialize_permission(@permission)
     }
   end
 
   # GET /permissions/1/edit
   def edit
-    render inertia: 'Permission/Edit', props: {
+    render inertia: "Permission/Edit", props: {
       permission: serialize_permission(@permission)
     }
   end

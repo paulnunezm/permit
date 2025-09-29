@@ -6,7 +6,7 @@ class RolesController < ApplicationController
   # GET /roles
   def index
     @roles = Role.all
-    render inertia: 'Role/Index', props: {
+    render inertia: "Role/Index", props: {
       roles: @roles.map do |role|
         serialize_role(role)
       end
@@ -15,7 +15,7 @@ class RolesController < ApplicationController
 
   # GET /roles/1
   def show
-    render inertia: 'Role/Show', props: {
+    render inertia: "Role/Show", props: {
       role: serialize_role(@role)
     }
   end
@@ -23,14 +23,14 @@ class RolesController < ApplicationController
   # GET /roles/new
   def new
     @role = Role.new
-    render inertia: 'Role/New', props: {
+    render inertia: "Role/New", props: {
       role: serialize_role(@role)
     }
   end
 
   # GET /roles/1/edit
   def edit
-    render inertia: 'Role/Edit', props: {
+    render inertia: "Role/Edit", props: {
       role: serialize_role(@role)
     }
   end

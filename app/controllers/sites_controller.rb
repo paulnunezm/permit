@@ -6,7 +6,7 @@ class SitesController < ApplicationController
   # GET /sites
   def index
     @sites = Site.all
-    render inertia: 'Site/Index', props: {
+    render inertia: "Site/Index", props: {
       sites: @sites.map do |site|
         serialize_site(site)
       end
@@ -15,7 +15,7 @@ class SitesController < ApplicationController
 
   # GET /sites/1
   def show
-    render inertia: 'Site/Show', props: {
+    render inertia: "Site/Show", props: {
       site: serialize_site(@site)
     }
   end
@@ -23,14 +23,14 @@ class SitesController < ApplicationController
   # GET /sites/new
   def new
     @site = Site.new
-    render inertia: 'Site/New', props: {
+    render inertia: "Site/New", props: {
       site: serialize_site(@site)
     }
   end
 
   # GET /sites/1/edit
   def edit
-    render inertia: 'Site/Edit', props: {
+    render inertia: "Site/Edit", props: {
       site: serialize_site(@site)
     }
   end
