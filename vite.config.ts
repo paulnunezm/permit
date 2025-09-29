@@ -4,9 +4,10 @@ import { defineConfig } from 'vite'
 import RubyPlugin from 'vite-plugin-ruby'
 
 export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss(),
-    RubyPlugin(),
-  ],
+    plugins: [
+        react(),
+        tailwindcss(),
+        RubyPlugin(),
+    ],
+    server: { hmr: true },
 })
