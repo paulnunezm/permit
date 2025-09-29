@@ -19,7 +19,7 @@ export default function New() {
                                 LogIn
                             </button>
                             <Link href="/passwords/new" method="get" as="button"
-                                className="mt-4 mx-4 rounded-lg py-3 px-5 bg-red-200 text-gray-400 font-medium cursor-pointer" >
+                                className="mt-4 mx-4 rounded-lg py-3 px-5 bg-gray-200 text-gray-400 font-medium cursor-pointer" >
                                 Forgot password
                             </Link>
                         </div>
