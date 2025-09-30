@@ -1,24 +1,81 @@
 <% password_digest = BCrypt::Password.create("password") %>
 
-three:
-  username: three_member
-  password_digest: <%= password_digest %>
-  role: member 
-  site: site_one
+# three:
+#   username: three_member
+#   password_digest: <%= password_digest %>
+#   role: member 
+#   site: site_one
+#
+# four:
+#   username: four_member
+#   password_digest: <%= password_digest %>
+#   role: member 
+#   site: site_one
+#
+# one:
+#   email_address: one@example.com
+#   password_digest: <%= password_digest %>
+#   role: owner
+#
+# two:
+#   email_address: two@example.com
+#   password_digest: <%= password_digest %>
+#   role: owner
 
-four:
-  username: four_member
-  password_digest: <%= password_digest %>
-  role: member 
-  site: site_one
-
-one:
-  email_address: one@example.com
+ray:  
+  email_address: ray@katano.com
   password_digest: <%= password_digest %>
   role: owner
 
-two:
-  email_address: two@example.com
+baby:
+  username: la_baby
+  password_digest: <%= password_digest %>
+  role: supervisor 
+  site: rays_house
+
+santi:
+  username: santi
+  password_digest: <%= password_digest %>
+  role: member
+  site: rays_house 
+
+patty: 
+  username: patty
+  password_digest: <%= password_digest %>
+  role: member
+  site: theorem 
+  
+maria: 
+  username: maria
+  password_digest: <%= password_digest %>
+  role: member
+  site: theorem
+
+carlos:  
+  email_address: its@carlos.com
   password_digest: <%= password_digest %>
   role: owner
 
+shan:
+  username: shan
+  password_digest: <%= password_digest %>
+  role: supervisor
+  site: carlos_house
+
+cesar: 
+  username: cesar 
+  password_digest: <%= password_digest %>
+  role: member
+  site: carlos_house
+
+elynor: 
+  username: elynor
+  password_digest: <%= password_digest %>
+  role: member
+  site: joystick
+
+luz: 
+  username: luz
+  password_digest: <%= password_digest %>
+  role: member
+  site: joystick

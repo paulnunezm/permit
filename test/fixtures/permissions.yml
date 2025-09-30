@@ -1,11 +1,37 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 permission_one:
-  site: site_one
-  user: one 
-  name: Homero Simpson
+  site: theorem
+  user: baby 
+  name: Edmundo Pichardo
 
 permission_two:
-  site: site_one
-  user: one 
+  site: theorem
+  user: patty 
+  name: Luz del Alba
+
+permission_three:
+  site: rays_house
+  user: ray 
+  name: Carlo martine
+
+permission_three:
+  site: rays_house
+  user: ray 
+  name: Patty Santos
+
+permission_four:
+  site: joystick
+  user: luz
   name: Marge Simpson
+
+permission_four:
+  site: joystick
+  user: luz
+  name: Gillermos
+
+permission_five:
+  site: carlos_house
+  user: carlos
+  name: Paul
+
