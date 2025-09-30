@@ -9,7 +9,7 @@ export default function Permission({ permission }: PermissionProps) {
         <div>
             <p className="my-5">
                 <strong className="block font-medium">Name:</strong>
-                {permission.name?.toString()} - {permission.created_at_ago}
+                {permission.name?.toString()} - by {permission.user.username} - {permission.created_at_ago}
             </p>
         </div>
     )
