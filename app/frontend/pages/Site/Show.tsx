@@ -23,7 +23,6 @@ interface ShowProps {
 }
 
 export default function Show({ site, users, permissions, flash }: ShowProps) {
-    console.log(permissions)
     return (
         <>
             <AppLayout>

@@ -18,7 +18,7 @@ class SitesController < ApplicationController
     render inertia: "Site/Show", props: {
       site: serialize_site(@site),
       users: @site.users.as_json(only: [ "username" ], include: { role: { only: [ :name ] } }),
-      permissions: @site.permissions.as_json(only: [ :name ],  methods: [ :created_at_ago ])
+      permissions: @site.permissions.as_json(only: [ :name ], include: { user: { only: [ :username ] } }, methods: [ :created_at_ago ])
     }
   end
 
