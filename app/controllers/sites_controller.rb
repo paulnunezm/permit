@@ -5,7 +5,7 @@ class SitesController < ApplicationController
 
   # GET /sites
   def index
-    @sites = Site.all
+    @sites = Current.user.sites
     render inertia: "Site/Index", props: {
       sites: @sites.map do |site|
         serialize_site(site)
@@ -16,7 +16,9 @@ class SitesController < ApplicationController
   # GET /sites/1
   def show
     render inertia: "Site/Show", props: {
-      site: serialize_site(@site)
+      site: serialize_site(@site),
+      users: @site.users.as_json(only: [ "username" ], include: { role: { only: [ :name ] } }),
+      permissions: @site.permissions.as_json(only: [ :name ],  methods: [ :created_at_ago ])
     }
   end
 
