@@ -1,22 +1,56 @@
 # permit README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
 
-Things you may want to cover:
+### Install dependencies
 
-* Ruby version
+Use hombre to install dependencies.
 
-* System dependencies
+Mise is a tool version manager, can nvm, language versions, etc.
 
-* Configuration
+``` zsh
+brew install ruby
+brew install mise
 
-* Database creation
+# add mise to work in the terminal
+echo 'eval "$(mise activate zsh)"' >> ~/.zshrc
+eval "$(mise activate zsh)"
 
-* Database initialization
+# set up ruby version
+mise use -g ruby@3.4.3
+```
 
-* How to run the test suite
+### Initialize the database
 
-* Services (job queues, cache servers, search engines, etc.)
+```zsh
+bin/rails db:migrate
+bin/rails db:fixtures:load # load dummy data
+```
 
-* Deployment instructions
+### Running and testing the app
+
+1. Start the server
+
+```zsh
+bin/dev
+```
+
+2. It normally goes to:
+
+```
+http://127.0.0.1:3100
+```
+
+3. Use one of these accounts
+
+``` yaml
+owner:  
+    email: ray@katano.com
+    password: password
+
+owner:  
+    email: its@carlos.com
+    password: password
+```
+
+4. Metan mano.
