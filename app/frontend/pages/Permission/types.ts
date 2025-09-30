@@ -1,8 +1,7 @@
 export interface PermissionType {
-  id: number
-  site_id: string
-  user_id: string
-  name: string
+    id: number
+    name: string
+    created_at_ago: string
 }
 
 export type PermissionFormType = Omit<PermissionType, 'id'>
