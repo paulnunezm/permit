@@ -20,11 +20,14 @@ class PermissionsController < ApplicationController
     }
   end
 
-  # GET /permissions/new
+  # GET /permissions/new & /permission/new/:site
   def new
-    @permission = Permission.new
+   # TODO: check if the passed site exits and that it belongs to user
+   # @permission = Permission.new
+   @permission = Permission.new(site_id: params[:site_id])
     render inertia: "Permission/New", props: {
       permission: serialize_permission(@permission)
+      # site_id: params[:site_id]
     }
   end
 
@@ -37,10 +40,11 @@ class PermissionsController < ApplicationController
 
   # POST /permissions
   def create
-    @permission = Permission.new(permission_params)
+    # needs to get other params from the form if admin
+    @permission = Permission.new(permission_params.merge(user_id: Current.user.id))
 
     if @permission.save
-      redirect_to @permission, notice: "Permission was successfully created."
+      redirect_to site_path @permission.site_id, notice: "Permission was successfully created."
     else
       redirect_to new_permission_url, inertia: { errors: @permission.errors }
     end
@@ -69,7 +73,8 @@ class PermissionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def permission_params
-      params.require(:permission).permit(:site_id, :user_id, :name)
+      # TODO: need to allow admin
+      params.require(:permission).permit(:name, :site_id)
     end
 
     def serialize_permission(permission)

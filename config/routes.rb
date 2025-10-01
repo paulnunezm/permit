@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :permissions
+  resources :permissions # TODO: needs to exclue new from here
+  get "permissions/new/:site_id", to: "permissions#new", as: "new_permission_for_site"
   resources :sites
   resources :roles
   resource :session

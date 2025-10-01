@@ -18,10 +18,11 @@ interface ShowProps {
     site: SiteType
     users: User[]
     permissions: PermissionType[]
+    older_permissions: PermissionType[]
     flash: { notice?: string }
 }
 
-export default function Show({ site, users, permissions, flash }: ShowProps) {
+export default function Show({ site, users, permissions, older_permissions, flash }: ShowProps) {
     return (
         <>
             <AppLayout title={`Site - ${site.name}`} >
@@ -40,7 +41,7 @@ export default function Show({ site, users, permissions, flash }: ShowProps) {
                         </Link>
 
                         <Link
-                            href={`/permissions/new`}
+                            href={`/permissions/new/${site.id}`}
                             as="button"
                             method="get"
                             className="
@@ -49,17 +50,6 @@ export default function Show({ site, users, permissions, flash }: ShowProps) {
                             hover:bg-gray-600 hover:text-gray-50
                             font-medium text-center cursor-pointer" >
                             Create permission
-                        </Link>
-
-                        <Link
-                            href={`#`}
-                            as="button"
-                            method="get"
-                            className="
-                            mt-4 w-auto rounded-lg py-3 px-5 
-                            bg-gray-200 text-gray-400 
-                            font-medium text-center cursor-pointer" >
-                            Create new site
                         </Link>
 
                         <Link
@@ -81,8 +71,8 @@ export default function Show({ site, users, permissions, flash }: ShowProps) {
                         </ul>
                     </div>
 
-                    <div >
-                        <h2 className='text-xl font-semibold'>Permissions</h2>
+                    <div>
+                        <h2 className='text-xl font-semibold'>Today's Permissions</h2>
                         <ul>
                             {permissions.map((permission, index) => (
                                 <li key={index}>
@@ -92,6 +82,27 @@ export default function Show({ site, users, permissions, flash }: ShowProps) {
                         </ul>
                     </div>
 
+                    <div>
+                        <h2 className='text-xl font-semibold'>Older Permissions</h2>
+                        {older_permissions === undefined ? (
+                            <Link only={["older_permissions"]}
+                                className='
+                                inline-block
+                                mt-4 w-auto h-auto rounded-lg py-3 px-5 
+                                bg-gray-200 text-gray-600 
+                                hover:bg-gray-600 hover:text-gray-50
+                                font-medium text-center cursor-pointer'>
+                                Load older permissions
+                            </Link>
+                        ) : (
+                            <ul>
+                                {older_permissions.map((permission, index) => (
+                                    <li key={index}>
+                                        <Permission permission={permission} />
+                                    </li>
+                                ))}
+                            </ul>)}
+                    </div>
                 </section>
             </AppLayout >
         </>

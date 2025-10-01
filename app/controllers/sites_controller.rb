@@ -1,8 +1,6 @@
 class SitesController < ApplicationController
   before_action :set_site, only: %i[ show edit update destroy ]
 
-  inertia_share flash: -> { flash.to_hash }
-
   # GET /sites
   def index
     @sites = Current.user.sites
@@ -15,10 +13,14 @@ class SitesController < ApplicationController
 
   # GET /sites/1
   def show
+    # this is optional: render inertia: "Site/Show", props: {
     render inertia: "Site/Show", props: {
       site: serialize_site(@site),
       users: @site.users.as_json(only: [ "username" ], include: { role: { only: [ :name ] } }),
-      permissions: @site.permissions.as_json(only: [ :name ], include: { user: { only: [ :username ] } }, methods: [ :created_at_ago ])
+      permissions: @site.permissions_created_today.as_json(only: [ :name ], include: { user: { only: [ :username ] } }, methods: [ :created_at_ago ]),
+      older_permissions: InertiaRails.optional do
+       @site.older_permissions.as_json(only: [ :name ], include: { user: { only: [ :username ] } }, methods: [ :created_at_ago ])
+      end
     }
   end
 
@@ -39,7 +41,8 @@ class SitesController < ApplicationController
 
   # POST /sites
   def create
-    @site = Site.new(site_params)
+    # TODO: needs to get other params from the form if admin
+    @site = Site.new(site_params.merge(user_id: Current.user.id))
 
     if @site.save
       redirect_to @site, notice: "Site was successfully created."
@@ -50,6 +53,7 @@ class SitesController < ApplicationController
 
   # PATCH/PUT /sites/1
   def update
+    # TODO: add a before action check for anything to check site ownership
     if @site.update(site_params)
       redirect_to @site, notice: "Site was successfully updated."
     else
@@ -71,7 +75,12 @@ class SitesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def site_params
-      params.require(:site).permit(:name, :user_id)
+      admin = Role.find_by_name("admin").id
+      if Current.user.role_id == admin
+        params.require(:site).permit(:name, :user_id)
+      else
+        params.require(:site).permit(:name)
+      end
     end
 
     def serialize_site(site)
