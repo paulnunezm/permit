@@ -5,7 +5,6 @@ import { PermissionType } from '../Permission/types'
 import AppLayout from '../../layouts/app-layout'
 import Permission from '../Permission/Permission'
 
-
 type Role = {
     name: String
 }
@@ -25,49 +24,55 @@ interface ShowProps {
 export default function Show({ site, users, permissions, flash }: ShowProps) {
     return (
         <>
-            <AppLayout title={`${site.name}`} >
-                <Head title={`Site - ${site.name}`} />
+            <AppLayout title={`Site - ${site.name}`} >
 
-                <div className="mx-auto w-full px-8 pt-8">
-                    <div className="mx-auto">
-
-                        <Site site={site} />
-
+                <Site site={site} />
+                <section className='w-full h-full flex flex-col gap-12'>
+                    <div className="flex lg:flex-row  flex-col gap-2">
                         <Link
                             href={`/sites/${site.id}/edit`}
-                            className="mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"
-                        >
+                            className="
+                            mt-4 w-auto h-auto rounded-lg py-3 px-5 
+                            bg-gray-200 text-gray-600 
+                            hover:bg-gray-600 hover:text-gray-50
+                            font-medium text-center cursor-pointer" >
                             Edit this site
                         </Link>
-                        <div className="inline-block ml-2">
-                            <Link
-                                href={`/sites/${site.id}`}
-                                as="button"
-                                method="delete"
-                                className="mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium"
-                            >
-                                Destroy this site
-                            </Link>
-                        </div>
-                    </div>
-                    <div className="mx-auto">
+
+                        <Link
+                            href={`/permissions/new`}
+                            as="button"
+                            method="get"
+                            className="
+                            mt-4 w-auto rounded-lg py-3 px-5 
+                            bg-gray-200 text-gray-600 
+                            hover:bg-gray-600 hover:text-gray-50
+                            font-medium text-center cursor-pointer" >
+                            Create permission
+                        </Link>
+
                         <Link
                             href={`#`}
-                            className="mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" >
+                            as="button"
+                            method="get"
+                            className="
+                            mt-4 w-auto rounded-lg py-3 px-5 
+                            bg-gray-200 text-gray-400 
+                            font-medium text-center cursor-pointer" >
+                            Create new site
+                        </Link>
+
+                        <Link
+                            href={`#`}
+                            className="
+                            mt-4 w-auto rounded-lg py-3 px-5 
+                            bg-gray-200 text-gray-400 
+                            font-medium text-center cursor-pointer" >
                             Create new member
                         </Link>
-                        <div className="inline-block ml-2">
-                            <Link
-                                href={`/permissions/new`}
-                                as="button"
-                                method="get"
-                                className="mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" >
-                                Create permission
-                            </Link>
-                        </div>
                     </div>
 
-                    <div className="mx-auto w-full my-8">
+                    <div>
                         <h2 className='text-xl font-semibold'>Users</h2>
                         <ul >
                             {users.map((user, index) => (
@@ -76,7 +81,7 @@ export default function Show({ site, users, permissions, flash }: ShowProps) {
                         </ul>
                     </div>
 
-                    <div className="mx-auto my-8">
+                    <div >
                         <h2 className='text-xl font-semibold'>Permissions</h2>
                         <ul>
                             {permissions.map((permission, index) => (
@@ -86,7 +91,8 @@ export default function Show({ site, users, permissions, flash }: ShowProps) {
                             ))}
                         </ul>
                     </div>
-                </div>
+
+                </section>
             </AppLayout >
         </>
     )

@@ -15,16 +15,14 @@ export default function Index() {
     return (
         <>
             <AppLayout title='Dashboard' hideBackButton={false}>
-                <Head title="Dashboard" />
                 <div className="mx-auto md:w-2/3 w-full px-8 pt-8">
                     <div className="flex-row justify-between items-center">
-                        <h1 className="font-bold text-4xl">Dashboards</h1>
                         <h2 className="text-2xl font-semibold">Sites</h2>
 
                         <Link href="/sites/new" method="get" as="button"
                             className="
                             mt-4 w-40 rounded-lg py-3 px-5 
-                            bg-gray-200 text-gray-400 
+                            bg-gray-200 text-gray-600 
                             hover:bg-gray-600 hover:text-gray-50
                             font-medium cursor-pointer" >
                             Create new site
@@ -52,11 +50,11 @@ export default function Index() {
                             font-medium cursor-pointer" >
                                         Edit
                                     </Link>
-                                    <Link href="/sites/new" method="delete" as="button"
+
+                                    <Link href="#" method="get" as="button"
                                         className="
                             w-40 rounded-lg py-3 px-5 
-                            bg-red-200 text-red-800 
-                            hover:bg-red-400 hover:text-red-50
+                            bg-gray-200 text-gray-400 
                             font-medium cursor-pointer" >
                                         Delete
                                     </Link>
