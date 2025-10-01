@@ -3,5 +3,15 @@ class Site < ApplicationRecord
   has_many :users
   has_many :permissions
 
-  has_many :permissions_created_today, -> { where(created_at: Time.zone.today.all_day) }, class_name: "Permission"
+  # scoped queries
+  has_many :permissions_created_today, -> {
+    where(created_at: Time.zone.today.all_day).order(created_at: :desc)
+  }, class_name: "Permission"
+
+  has_many :older_permissions, -> {
+    where("created_at < ?", Time.zone.today).order(created_at: :desc)
+  }, class_name: "Permission"
+
+  validates :name, presence: true
+  validates :user_id, presence: true
 end
