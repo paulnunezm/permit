@@ -4,5 +4,5 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
 inertia_share flash: -> { flash.to_hash },
-    current_user: -> { Current.user&.as_json(include: [ :role ]) }
+    current_user: -> { Current.user&.as_json(only: [ :username, :email_address ], include: { role: { only:  :name } }) }
 end

@@ -6,6 +6,8 @@ import { usePage } from "@inertiajs/react"
 
 export default function AppLayout({ children, title, hideBackButton }) {
 
+    let flash = usePage().props.flash
+
     function goBack() {
         window.history.back()
     }
@@ -15,6 +17,11 @@ export default function AppLayout({ children, title, hideBackButton }) {
             <AppSidebar />
             <SidebarTrigger />
             <main className="w-full h-full p-8">
+                {flash.notice && (
+                    <p className="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block">
+                        {flash.notice}
+                    </p>
+                )}
                 <div className="block">
                     {hideBackButton != false && (
                         <Button variant="secondary" className="hover:bg-gray-500 hover:text-white" onClick={goBack}>
