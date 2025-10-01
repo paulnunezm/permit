@@ -14,15 +14,9 @@ export default function Index() {
     const { sites } = usePage<MyPageProps>().props
     return (
         <>
-            <AppLayout>
+            <AppLayout title='Dashboard' hideBackButton={false}>
                 <Head title="Dashboard" />
-
                 <div className="mx-auto md:w-2/3 w-full px-8 pt-8">
-                    {/* {flash.notice && ( */}
-                    {/*     <p className="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block"> */}
-                    {/*         {flash.notice} */}
-                    {/*     </p> */}
-                    {/* )} */}
                     <div className="flex-row justify-between items-center">
                         <h1 className="font-bold text-4xl">Dashboards</h1>
                         <h2 className="text-2xl font-semibold">Sites</h2>
@@ -72,7 +66,7 @@ export default function Index() {
                     </div>
 
                 </div>
-            </AppLayout>
+            </AppLayout >
         </>
     )
 }

@@ -25,18 +25,11 @@ interface ShowProps {
 export default function Show({ site, users, permissions, flash }: ShowProps) {
     return (
         <>
-            <AppLayout>
+            <AppLayout title={`${site.name}`} >
                 <Head title={`Site - ${site.name}`} />
 
                 <div className="mx-auto w-full px-8 pt-8">
                     <div className="mx-auto">
-                        {flash.notice && (
-                            <p className="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block">
-                                {flash.notice}
-                            </p>
-                        )}
-
-                        <h1 className="font-bold text-4xl">Site #{site.id}</h1>
 
                         <Site site={site} />
 
