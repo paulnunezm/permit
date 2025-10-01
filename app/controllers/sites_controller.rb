@@ -42,7 +42,7 @@ class SitesController < ApplicationController
   # POST /sites
   def create
     # TODO: needs to get other params from the form if admin
-    @site = Site.new(site_params.merge(user_id: Current.user.id))
+    @site = Current.user.sites.new(site_params)
 
     if @site.save
       redirect_to @site, notice: "Site was successfully created."
