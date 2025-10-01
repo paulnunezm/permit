@@ -2,7 +2,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "../components/ui/app-sidebar"
 import { Button } from "../components/ui/button"
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
-import { usePage } from "@inertiajs/react"
+import { usePage, Head } from "@inertiajs/react"
 
 export default function AppLayout({ children, title, hideBackButton }) {
 
@@ -13,10 +13,12 @@ export default function AppLayout({ children, title, hideBackButton }) {
     }
 
     return (
+
         <SidebarProvider>
             <AppSidebar />
             <SidebarTrigger />
-            <main className="w-full h-full p-8">
+            <Head title={title} />
+            <main className="w-full p-8">
                 {flash.notice && (
                     <p className="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block">
                         {flash.notice}

@@ -1,4 +1,4 @@
-import { Head, Link } from '@inertiajs/react'
+import { Head, usePage } from '@inertiajs/react'
 import Form from './Form'
 import { PermissionType } from './types'
 import AppLayout from '../../layouts/app-layout.jsx'
