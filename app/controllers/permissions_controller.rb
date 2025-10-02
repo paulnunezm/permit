@@ -22,13 +22,16 @@ class PermissionsController < ApplicationController
 
   # GET /permissions/new & /permission/new/:site
   def new
-   # TODO: check if the passed site exits and that it belongs to user
-   # @permission = Permission.new
-   @permission = Permission.new(site_id: params[:site_id])
-    render inertia: "Permission/New", props: {
-      permission: serialize_permission(@permission)
-      # site_id: params[:site_id]
-    }
+    # TODO: check if the passed site exits and that it belongs to user
+    # @permission = Permission.new
+    if !Current.user.sites.exists?(id: params.require(:site_id))
+      redirect_to dashboard_index_path, notice: "You don't access that site"
+    else
+      @permission = Permission.new(site_id: params[:site_id])
+      render inertia: "Permission/New", props: {
+        permission: serialize_permission(@permission)
+      }
+    end
   end
 
   # GET /permissions/1/edit
@@ -41,12 +44,17 @@ class PermissionsController < ApplicationController
   # POST /permissions
   def create
     # needs to get other params from the form if admin
-    @permission = Permission.new(permission_params.merge(user_id: Current.user.id))
+    # if not admin
+    if Current.user.sites.exists?(id: permission_params[:site_id])
+      @permission = Permission.new(permission_params.merge(user_id: Current.user.id))
 
-    if @permission.save
-      redirect_to site_path @permission.site_id, notice: "Permission was successfully created."
+      if @permission.save
+        redirect_to site_path @permission.site_id, notice: "Permission was successfully created."
+      else
+        redirect_to new_permission_url, inertia: { errors: @permission.errors }
+      end
     else
-      redirect_to new_permission_url, inertia: { errors: @permission.errors }
+        redirect_to dashboard_index_path, notice: "You can't access that permission"
     end
   end
 
