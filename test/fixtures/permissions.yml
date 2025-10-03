@@ -1,37 +1,68 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+DEFAULTS: &DEFAULTS
+  created_at: <%= 3.weeks.ago.utc.strftime("%Y-%m-%d %H:%M:%S") %> 
 
-permission_one:
+permission_theorem_one:
   site: theorem
   user: baby 
   name: Edmundo Pichardo
 
-permission_two:
+permission_theorem_two:
   site: theorem
   user: patty 
   name: Luz del Alba
 
-permission_three:
+permission_theorem_three:
+  <<: *DEFAULTS
+  site: theorem
+  user: patty 
+  name: ELynor
+
+permission_rays_one:
   site: rays_house
-  user: ray 
+  user: patty 
   name: Carlo martine
 
-permission_three:
+permission_rays_two:
   site: rays_house
-  user: ray 
+  user: baby 
   name: Patty Santos
 
-permission_four:
+permission_rays_two:
+  <<: *DEFAULTS
+  site: rays_house
+  user: baby 
+  name: Nizi
+
+permission_joystick_one:
   site: joystick
   user: luz
   name: Marge Simpson
 
-permission_four:
+permission_joystick_two:
   site: joystick
   user: luz
   name: Gillermos
 
-permission_five:
+permission_joystick_three:
+  <<: *DEFAULTS
+  site: joystick
+  user: luz
+  name: Miolan
+
+permission_carlos_one:
   site: carlos_house
-  user: carlos
+  user: cesar
   name: Paul
+
+permission_carlos_two:
+  site: carlos_house
+  user: shan
+  name: Melvic
+
+permission_carlos_thre:
+  <<: *DEFAULTS
+  site: carlos_house
+  user: shan
+  name: Melvic
 
