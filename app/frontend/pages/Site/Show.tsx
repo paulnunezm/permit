@@ -53,10 +53,11 @@ export default function Show({ site, users, permissions, older_permissions, flas
                         </Link>
 
                         <Link
-                            href={`#`}
+                            href={`/members/new/${site.id}`}
                             className="
                             mt-4 w-auto rounded-lg py-3 px-5 
-                            bg-gray-200 text-gray-400 
+                            bg-gray-200 text-gray-600 
+                            hover:bg-gray-600 hover:text-gray-50
                             font-medium text-center cursor-pointer" >
                             Create new member
                         </Link>

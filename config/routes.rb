@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :roles
   resource :session
   resources :passwords, param: :token
+
+  get "members/new/:site_id", to: "members#new", as: "new_user_for_site"
+  post "members/", to: "members#create"
+
   get "inertia-example", to: "inertia_example#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
